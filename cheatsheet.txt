@@ -1,0 +1,22 @@
+// Convert INT to SLICE OF INT
+func intToSlice(n int, sequence []int) []int {
+	if n != 0 {
+		i := n % 10
+		// sequence = append([]int{i}, sequence...) // order correct
+		sequence = append(sequence, i) // order reversed
+		return intToSlice(n/10, sequence)
+	}
+	return sequence
+}
+
+// Convert SLICE OF INT to INT
+func joinIntSlice(arr []int) int {
+	res := 0
+	pow := len(arr) - 1
+	for i := 0; i < len(arr); i++ {
+		tempPow := math.Pow(float64(10), float64(pow))
+		res = res + (arr[i] * int(tempPow))
+		pow--
+	}
+	return res
+}
